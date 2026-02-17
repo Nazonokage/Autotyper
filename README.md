@@ -29,24 +29,24 @@ AutoTyper is a PowerShell script that simulates human-like typing into any activ
 ### Basic Usage
 Simply type text using default settings:
 ```powershell
-.\typer.ps1 -Text "Hello, World!"
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Hello, World!"
 ```
 
 ### With Custom Speed
 Adjust the typing speed (lower = faster):
 ```powershell
-.\typer.ps1 -Text "Your text here" -DelayMs 25
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text here" -DelayMs 25
 ```
 
 ### With Human-Like Variation
 Enable random delays for more natural typing:
 ```powershell
-.\typer.ps1 -Text "Your text here" -Randomize -MinDelayMs 30 -MaxDelayMs 100
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text here" -Randomize -MinDelayMs 30 -MaxDelayMs 100
 ```
 
 ### Complete Example with All Options
 ```powershell
-.\typer.ps1 `
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 `
   -Text "Hello, this is a test message!" `
   -DelayMs 15 `
   -InitialDelayMs 2000 `
@@ -72,17 +72,17 @@ Enable random delays for more natural typing:
 
 ### Slow Typing (Natural Reading Speed)
 ```powershell
-.\typer.ps1 -Text "Your text" -DelayMs 50 -Randomize -MinDelayMs 30 -MaxDelayMs 100
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -DelayMs 50 -Randomize -MinDelayMs 30 -MaxDelayMs 100
 ```
 
 ### Medium Typing (Moderate Speed)
 ```powershell
-.\typer.ps1 -Text "Your text" -DelayMs 20 -Randomize -MinDelayMs 15 -MaxDelayMs 60
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -DelayMs 20 -Randomize -MinDelayMs 15 -MaxDelayMs 60
 ```
 
 ### Fast Typing (Quick Entry)
 ```powershell
-.\typer.ps1 -Text "Your text" -DelayMs 5 -PunctuationDelayMs 100
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -DelayMs 5 -PunctuationDelayMs 100
 ```
 
 ## Step-by-Step Instructions
@@ -97,12 +97,12 @@ Enable random delays for more natural typing:
 
 - **Increase initial delay** if you need more time to focus the window:
   ```powershell
-  .\typer.ps1 -Text "Your text" -InitialDelayMs 3000
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -InitialDelayMs 3000
   ```
 
 - **For form filling** - Use shorter punctuation delays and faster speed:
   ```powershell
-  .\typer.ps1 -Text "Input" -DelayMs 5 -PunctuationDelayMs 50
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Input" -DelayMs 5 -PunctuationDelayMs 50
   ```
 
 - **For demonstrations** - Use randomization for a more natural appearance:
@@ -112,7 +112,7 @@ Enable random delays for more natural typing:
 
 - **For multi-line text** - Use escaped newlines:
   ```powershell
-  .\typer.ps1 -Text "Line 1`nLine 2`nLine 3"
+powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Line 1`nLine 2`nLine 3"
   ```
 
 ## Execution Policy Notice
