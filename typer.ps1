@@ -13,7 +13,7 @@
 param(
     # Text to type
     [Parameter(Mandatory = $false)]
-    [string]$Text = "Sample text goes here.",
+    [string]$Text = "he activity moves from a state of uncertainty to a concrete plan by requiring the team to look at the problem through different lenses. This collaborative evaluation ensures that the decision made is the most logical choice for the project’s specific constraints.",
 
     # Base typing speed delay (milliseconds)
     [Parameter(Mandatory = $false)]
