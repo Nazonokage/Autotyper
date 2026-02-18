@@ -13,7 +13,7 @@
 param(
     # Base typing delay per character (ms)
     [ValidateRange(1,2000)]
-    [int]$DelayMs = 20,
+    [int]$DelayMs = 10,
 
     # Initial delay before typing starts (ms)
     [ValidateRange(0,10000)]
@@ -22,19 +22,24 @@ param(
     # Enable human randomization
     [switch]$Randomize,
 
-    # Random delay range
+    # Random delay range (used only if -Randomize is enabled)
     [ValidateRange(1,5000)]
     [int]$MinDelayMs = 40,
 
     [ValidateRange(1,5000)]
     [int]$MaxDelayMs = 120,
 
-    # Extra pause after punctuation
+    # Extra pause after punctuation (.,!?)
     [ValidateRange(0,5000)]
     [int]$PunctuationDelayMs = 300,
 
     # Text to type (instead of reading from input.txt)
-    [string]$Text = ""
+    [string]$Text = "",
+
+    # Replace newline characters (e.g., line breaks) with this string.
+    # Use " " to convert to spaces (making everything one line),
+    # or "" to remove them entirely.
+    [string]$NewlineReplacement = " "
 )
 
 # ------------------------------------------------------------
@@ -157,8 +162,14 @@ else {
     }
 }
 
-# Clean encoding issues
+# ------------------------------------------------------------
+# TEXT CLEANING AND NORMALIZATION
+# ------------------------------------------------------------
+# 1. Remove problematic Unicode characters
 $TextToType = Clean-Text $TextToType
+
+# 2. Replace newlines with the specified string (so typing stays on one line)
+$TextToType = $TextToType -replace '\r?\n', $NewlineReplacement
 
 # ------------------------------------------------------------
 # APPLY FIRST LETTER CAPITALIZATION

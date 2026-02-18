@@ -1,1 +1,4 @@
-﻿powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Hello, World!"
+﻿The activity moves beyond simply identifying errors by requiring a collaborative debrief. This
+mirrors the lesson summary's focus on the fact that being open to feedback—especially from a
+QA Specialist with software testing experience—is the most effective way to reduce the
+likelihood of future technical mistakes.
