@@ -1,146 +1,318 @@
-# AutoTyper - Human-Like Typing Simulator
+# 🚀 **Typer.ps1 - The Human-Like Auto Typer** 
 
-## Overview
-AutoTyper is a PowerShell script that simulates human-like typing into any active window. Perfect for automation, demonstrations, testing, or any scenario where you need to programmatically type text with natural speed variations.
+<div align="center">
 
-## Features
-- **Human-like typing speed** - Configurable delays between characters
-- **Random typing variations** - Optional randomized delays to mimic natural typing patterns
-- **Punctuation delays** - Automatic pauses after punctuation marks (`.`, `!`, `?`, `,`)
-- **Smart quote handling** - Automatically converts smart quotes to standard quotes for compatibility
-- **Initial delay** - Gives you time to focus the target window before typing begins
-- **Full customization** - Control every aspect of the typing behavior
+![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Version](https://img.shields.io/badge/Version-2.0-brightgreen?style=for-the-badge)
 
-## Requirements
-- Windows operating system
-- PowerShell 5.0 or later
-- Administrator privileges may be required depending on the target application
+**Type like a human, automate like a pro!** 🤖✍️
 
-## Installation
-1. Save `typer.ps1` to a directory on your computer
-2. Open PowerShell
-3. Navigate to the script directory:
-   ```powershell
-   cd "path\to\autotyper"
-   ```
-
-## Usage
-
-### Basic Usage
-Simply type text using default settings:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Hello, World!"
-```
-
-### With Custom Speed
-Adjust the typing speed (lower = faster):
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text here" -DelayMs 25
-```
-
-### With Human-Like Variation
-Enable random delays for more natural typing:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text here" -Randomize -MinDelayMs 30 -MaxDelayMs 100
-```
-
-### Complete Example with All Options
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 `
-  -Text "Hello, this is a test message!" `
-  -DelayMs 15 `
-  -InitialDelayMs 2000 `
-  -Randomize `
-  -MinDelayMs 50 `
-  -MaxDelayMs 120 `
-  -PunctuationDelayMs 300
-```
-
-## Parameters
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `-Text` | String | "Sample text goes here." | The text to type |
-| `-DelayMs` | Integer (1-2000) | 15 | Base delay per character in milliseconds |
-| `-InitialDelayMs` | Integer (0-10000) | 1500 | Wait time before typing starts (in milliseconds) |
-| `-Randomize` | Switch | False | Enable random delay variations |
-| `-MinDelayMs` | Integer | 50 | Minimum random delay when `-Randomize` is enabled |
-| `-MaxDelayMs` | Integer | 110 | Maximum random delay when `-Randomize` is enabled |
-| `-PunctuationDelayMs` | Integer | 250 | Extra pause after punctuation marks |
-
-## Timing Guide
-
-### Slow Typing (Natural Reading Speed)
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -DelayMs 50 -Randomize -MinDelayMs 30 -MaxDelayMs 100
-```
-
-### Medium Typing (Moderate Speed)
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -DelayMs 20 -Randomize -MinDelayMs 15 -MaxDelayMs 60
-```
-
-### Fast Typing (Quick Entry)
-```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -DelayMs 5 -PunctuationDelayMs 100
-```
-
-## Step-by-Step Instructions
-
-1. **Focus your target window** - Click on the application/text field where you want the text to appear
-2. **Run the script** - Execute the command in PowerShell
-3. **Wait for initial delay** - The script waits 1.5 seconds by default (you'll see "Preparing to type..." message)
-4. **Watch it type** - The text will be automatically typed character by character
-5. **Typing complete** - You'll see "Typing completed." message when done
-
-## Tips & Tricks
-
-- **Increase initial delay** if you need more time to focus the window:
-  ```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Your text" -InitialDelayMs 3000
-  ```
-
-- **For form filling** - Use shorter punctuation delays and faster speed:
-  ```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Input" -DelayMs 5 -PunctuationDelayMs 50
-  ```
-
-- **For demonstrations** - Use randomization for a more natural appearance:
-  ```powershell
-  .\typer.ps1 -Text "Demo text" -RandomIsComputerIze -MinDelayMs 40 -MaxDelayMs 120
-  ```
-
-- **For multi-line text** - Use escaped newlines:
-  ```powershell
-powershell -ExecutionPolicy Bypass -File .\typer.ps1 -Text "Line 1`nLine 2`nLine 3"
-  ```
-
-## Execution Policy Notice
-If you get an execution policy error, run PowerShell as Administrator and execute:
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Then try running the script again.
-
-## Troubleshooting
-
-**Issue: Nothing is being typed**
-- Ensure the target window is actually focused when the script runs
-- Check that the initial delay is long enough (increase `-InitialDelayMs`)
-
-**Issue: Text appears too fast/too slow**
-- Adjust the `-DelayMs` parameter to fine-tune speed
-- Use `-Randomize` for more varied typing speeds
-
-**Issue: Script won't run**
-- Check execution policy (see note above)
-- Run PowerShell as Administrator
-- Ensure the target application accepts keyboard input
-
-## License
-Feel free to use, modify, and distribute this script as needed.
+</div>
 
 ---
 
-**Happy Typing!** 🚀
+## 📋 **TABLE OF CONTENTS**
+- [⚡ Quick Start](#-quick-start)
+- [🎯 Introduction](#-introduction)
+- [✨ Features](#-features)
+- [🔧 Parameters](#-parameters)
+- [🧠 How It Works (The Algorithm)](#-how-it-works-the-algorithm)
+- [📝 Usage Examples](#-usage-examples)
+- [🎮 Interactive Demo](#-interactive-demo)
+- [⚠️ Troubleshooting](#️-troubleshooting)
+- [🤝 Contributing](#-contributing)
+
+---
+
+## ⚡ **QUICK START**
+
+### **One-Liner to Rule Them All:**
+```powershell
+powershell -ExecutionPolicy Bypass -File .\typer.ps1
+```
+
+### **That's it!** First run will:
+1. ✅ Create `input.txt` automatically
+2. 📝 Fill it with an example command
+3. ⏸️ **STOP** and ask you to edit the file
+4. 🚦 Ready for your custom text!
+
+---
+
+## 🎯 **INTRODUCTION**
+
+Ever wished you could automate typing without looking like a bot? **Typer.ps1** is your answer! This PowerShell script simulates human-like typing with customizable delays, random variations, and smart punctuation handling.
+
+### **The Problem It Solves:**
+- 🤔 Tired of copy-pasting long texts?
+- 🎭 Need to simulate real user interaction?
+- ⏰ Want to schedule text input automatically?
+- 🔒 Working in environments that block paste operations?
+
+### **The Solution:**
+Typer.ps1 reads text from a file (or directly from parameters) and types it out character by character, just like a human would - complete with natural pauses and variations!
+
+---
+
+## ✨ **FEATURES**
+
+| Feature | Description | Benefit |
+|---------|-------------|---------|
+| 🧠 **Smart Capitalization** | Auto-capitalizes first letter | Professional looking output |
+| 🎲 **Random Delays** | Human-like typing rhythm | Bypass bot detection |
+| ⚡ **Punctuation Pause** | Extra delay after .,!? | Natural reading flow |
+| 🔧 **Fully Configurable** | 7+ adjustable parameters | Perfect for any scenario |
+| 🛡️ **Encoding Safe** | Cleans Unicode characters | No weird symbols |
+| 📁 **Auto-Create File** | Creates input.txt if missing | Zero setup required |
+| 🚦 **Safety First** | Cancels on first run | Prevents accidents |
+| ⌨️ **Special Key Support** | Handles + ^ % ~ ( ) [ ] { } | Types ANYTHING |
+
+---
+
+## 🔧 **PARAMETERS**
+
+```powershell
+powershell .\typer.ps1 [-DelayMs <int>] [-InitialDelayMs <int>] [-Randomize] 
+                      [-MinDelayMs <int>] [-MaxDelayMs <int>] 
+                      [-PunctuationDelayMs <int>] [-Text <string>]
+```
+
+| Parameter | Range | Default | Description |
+|-----------|-------|---------|-------------|
+| `-DelayMs` | 1-2000 | 20 | Base delay between keystrokes (ms) |
+| `-InitialDelayMs` | 0-10000 | 2000 | Time before typing starts (ms) |
+| `-Randomize` | Switch | Off | Enable random delays |
+| `-MinDelayMs` | 1-5000 | 40 | Minimum random delay (ms) |
+| `-MaxDelayMs` | 1-5000 | 120 | Maximum random delay (ms) |
+| `-PunctuationDelayMs` | 0-5000 | 300 | Extra pause after .,!? (ms) |
+| `-Text` | Any string | "" | Type this instead of file |
+
+---
+
+## 🧠 **HOW IT WORKS (The Algorithm)**
+
+### **Step 1: 📂 File Management**
+```
+┌─────────────────┐
+│   Start Script  │
+└────────┬────────┘
+         ↓
+┌─────────────────┐
+│  -Text provided?│──Yes──→ Use provided text
+└────────┬────────┘
+         No
+         ↓
+┌─────────────────┐
+│ input.txt exists?│──No──→ Create file with example
+└────────┬────────┘          ↓
+        Yes                  ⚠️ CANCEL & Prompt user
+         ↓                    to edit file
+┌─────────────────┐
+│   Read file     │
+└─────────────────┘
+```
+
+### **Step 2: 🔄 Text Processing Pipeline**
+```
+Raw Text → Clean-Text → Ensure-FirstLetterCapitalized → Ready to Type
+    ↓           ↓                      ↓                      ↓
+ [Unicode]  [Remove weird    [Capitalize first    [Clean, proper
+            characters]       letter if needed]    formatted text]
+```
+
+### **Step 3: ⌨️ Typing Engine**
+```
+For each character:
+    ↓
+┌─────────────────────────────────────┐
+│ Is it a special char? (+, ^, %, etc)│
+└───────────────┬─────────────────────┘
+        Yes     ↓        No
+    ┌───────────────────────┐
+    │ Use SendKeys escape   │──→ Normal SendKeys
+    │ format: {+}, {^}, etc │
+    └───────────────────────┘
+                ↓
+    ┌─────────────────────────────────┐
+    │ Calculate delay:                │
+    │ if Randomize: Random(Min,Max)   │
+    │ else: DelayMs                    │
+    └─────────────────────────────────┘
+                ↓
+    ┌─────────────────────────────────┐
+    │ Punctuation? → Add ExtraDelay   │
+    └─────────────────────────────────┘
+                ↓
+    ┌─────────────────────────────────┐
+    │ Wait → Next character           │
+    └─────────────────────────────────┘
+```
+
+### **Step 4: 📊 Progress Tracking**
+- Shows real-time progress: `Progress: 42/100 characters`
+- Updates every 10 chars or after punctuation
+- Final summary with completion time
+
+---
+
+## 📝 **USAGE EXAMPLES**
+
+### **Example 1: Basic Usage**
+```powershell
+# Just type what's in input.txt
+.\typer.ps1
+```
+
+### **Example 2: Fast Typing**
+```powershell
+# Type super fast (10ms between keys)
+.\typer.ps1 -DelayMs 10 -InitialDelayMs 1000
+```
+
+### **Example 3: Human-Like Mode**
+```powershell
+# Random delays between 50-150ms, pause 400ms after punctuation
+.\typer.ps1 -Randomize -MinDelayMs 50 -MaxDelayMs 150 -PunctuationDelayMs 400
+```
+
+### **Example 4: Direct Text Input**
+```powershell
+# Type directly without creating input.txt
+.\typer.ps1 -Text "Hello, this is a test message!"
+```
+
+### **Example 5: Long Presentation**
+```powershell
+# Give yourself 10 seconds to switch windows
+.\typer.ps1 -InitialDelayMs 10000 -Randomize -PunctuationDelayMs 500
+```
+
+### **Example 6: Command Injection (Advanced)**
+```powershell
+# Type a PowerShell command (note the escaped quotes)
+.\typer.ps1 -Text 'Write-Host "Hello World" -ForegroundColor Green'
+```
+
+---
+
+## 🎮 **INTERACTIVE DEMO**
+
+### **Scenario: Automating a Welcome Message**
+
+**Step 1:** First run (file doesn't exist)
+```powershell
+PS C:\> .\typer.ps1
+
+============================================================
+INPUT.TXT NOT FOUND
+============================================================
+Creating input.txt with default content...
+
+============================================================
+AUTO-TYPING CANCELLED
+============================================================
+input.txt has been created with an example command.
+
+Please:
+  1. Open input.txt and replace its contents with the text you want to type
+  2. Save the file
+  3. Run this script again
+```
+
+**Step 2:** Edit `input.txt` to contain:
+```
+Welcome to our presentation! Today we'll discuss...
+```
+
+**Step 3:** Run again with human-like settings
+```powershell
+.\typer.ps1 -Randomize -PunctuationDelayMs 400
+```
+
+**Output:**
+```
+============================================================
+TEXT PROCESSING
+============================================================
+First letter already capitalized: 'W'
+
+Original: 'Welcome to our presentation! Today we'll discuss...'
+Processed: 'Welcome to our presentation! Today we'll discuss...'
+
+============================================================
+TEXT TO TYPE
+============================================================
+Welcome to our presentation! Today we'll discuss...
+============================================================
+Length: 52 characters
+
+Switch to your target window now...
+Typing will begin in 2 seconds...
+Press Ctrl+C to cancel...
+Progress: 52/52 characters
+
+============================================================
+TYPING COMPLETED SUCCESSFULLY!
+============================================================
+```
+
+---
+
+## ⚠️ **TROUBLESHOOTING**
+
+### **Common Issues & Solutions**
+
+| Issue | Cause | Solution |
+|-------|-------|----------|
+| 🚫 **Script won't run** | Execution Policy | `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` |
+| 📁 **File not found** | Wrong directory | Run from same folder as script or use full path |
+| ⌨️ **Wrong window types** | Focus issue | Click target window during initial delay |
+| 🔤 **Weird characters** | Unicode problems | Script auto-cleans them, but check source text |
+| ⏱️ **Too fast/slow** | Delay settings | Adjust `-DelayMs` or use `-Randomize` |
+| 🔒 **Special keys not working** | SendKeys limitations | They're handled! Check the switch statement |
+
+### **Pro Tips:**
+- 💡 Test with short text first to get timing right
+- 🎯 Use `-InitialDelayMs 5000` for complex window switching
+- 📊 Watch the progress bar to ensure it's working
+- 🛑 Ctrl+C kills the script immediately
+
+---
+
+## 🤝 **CONTRIBUTING**
+
+Love this script? Here's how you can help:
+
+1. 🐛 **Report bugs** - Open an issue
+2. 💡 **Suggest features** - Random word delays? Custom key mappings?
+3. 🔧 **Submit PRs** - Make it even better
+4. ⭐ **Star it** - Show some love
+5. 📢 **Share it** - Tell your friends
+
+### **Planned Features:**
+- [ ] Word-based random delays (not just character)
+- [ ] Configurable hotkey to start typing
+- [ ] Multiple text snippets support
+- [ ] GUI configuration tool
+- [ ] Macro recording mode
+
+---
+
+## 📜 **LICENSE**
+
+Free as in beer! 🍺 Use it, modify it, share it. Just don't blame me if you accidentally type "rm -rf /" somewhere important!
+
+---
+
+<div align="center">
+
+**Made with ❤️ for automation enthusiasts everywhere**
+
+[⬆ Back to Top](#-readme)
+
+</div>
+
+---
+
+*Happy Typing! 🎉*
