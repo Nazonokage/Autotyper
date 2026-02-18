@@ -1,308 +1,281 @@
-# 🚀 **Typer.ps1 - The Human-Like Auto Typer** 
+# 🚀 Typer.ps1 — The Human-Like Auto Typer
 
 <div align="center">
 
 ![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=for-the-badge&logo=powershell&logoColor=white)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Version](https://img.shields.io/badge/Version-2.0-brightgreen?style=for-the-badge)
-![Purpose](https://img.shields.io/badge/Purpose-Paste%20Bypass-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-**Type like a human, bypass paste restrictions like a pro!** 🤖✍️🚫📋
+**Type like a human. Bypass paste restrictions like a pro.**
 
 </div>
 
 ---
 
-## 📋 **TABLE OF CONTENTS**
+## 📋 Table of Contents
+
 - [⚡ Quick Start](#-quick-start)
 - [🎯 Introduction](#-introduction)
-- [🛡️ The "Why" - Bypassing Paste Restrictions](#️-the-why---bypassing-paste-restrictions)
+- [🛡️ Bypassing Paste Restrictions](#%EF%B8%8F-bypassing-paste-restrictions)
 - [🔧 Installation & Setup](#-installation--setup)
 - [✨ Features](#-features)
 - [🔧 Parameters](#-parameters)
-- [🧠 How It Works (The Algorithm)](#-how-it-works-the-algorithm)
+- [🧠 How It Works](#-how-it-works)
 - [📝 Usage Examples](#-usage-examples)
 - [🎮 Interactive Demo](#-interactive-demo)
-- [⚠️ Troubleshooting](#️-troubleshooting)
+- [⚠️ Troubleshooting](#%EF%B8%8F-troubleshooting)
 - [🤝 Contributing](#-contributing)
+- [📜 License](#-license)
 
 ---
 
-## ⚡ **QUICK START**
+## ⚡ Quick Start
 
-### **One-Liner to Rule Them All:**
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\typer.ps1
 ```
 
-### **That's it!** First run will:
-1. ✅ Create `input.txt` automatically
-2. 📝 Fill it with an example command
-3. ⏸️ **STOP** and ask you to edit the file
-4. 🚦 Ready for your custom text!
+On first run, the script will:
+
+1. ✅ Automatically create `input.txt`
+2. 📝 Populate it with an example command
+3. ⏸️ **Pause** and prompt you to edit the file
+4. 🚦 Resume typing on the next run
 
 ---
 
-## 🎯 **INTRODUCTION**
+## 🎯 Introduction
 
-Ever wished you could automate typing without looking like a bot? **Typer.ps1** is your answer! This PowerShell script simulates human-like typing with customizable delays, random variations, and smart punctuation handling.
+**Typer.ps1** is a PowerShell script that simulates human-like keyboard input with configurable delays, random timing variations, and intelligent punctuation handling.
 
-### **The Problem It Solves:**
-- 🤔 Tired of copy-pasting long texts?
-- 🚫 Applications that block paste operations (CTRL+V, right-click paste)
-- 🎭 Need to simulate real user interaction?
-- ⏰ Want to schedule text input automatically?
-- 🔒 Working in secure environments that disable clipboard
+### The problem it solves
 
-### **The Solution:**
-Typer.ps1 reads text from a file (or directly from parameters) and **types it out character by character**, just like a human would - complete with natural pauses and variations! This cleverly bypasses any paste restrictions because technically, you're not pasting - you're typing!
+- Applications that block paste operations (Ctrl+V, right-click → Paste)
+- Secure environments that disable the clipboard entirely
+- Remote desktops, VDI clients, and web-based terminals with restricted input
+- Any scenario requiring realistic, automated text entry
+
+### The solution
+
+Typer.ps1 reads text from a file (or directly from a parameter) and **types it character by character** — exactly like a real user would. Because it simulates keystrokes through the Windows SendKeys API rather than the clipboard, paste restrictions simply don't apply.
 
 ---
 
-## 🛡️ **THE "WHY" - BYPASSING PASTE RESTRICTIONS**
-
-### **Where This Tool Shines:**
+## 🛡️ Bypassing Paste Restrictions
 
 | Scenario | Normal Pasting | Typer.ps1 |
-|----------|---------------|-----------|
-| 💻 **Remote Desktop/VMware** | Often blocked | ✅ Works perfectly |
-| 🌐 **Web-based terminals** | CTRL+V disabled | ✅ Types naturally |
-| 📋 **Secure document viewers** | Paste disabled | ✅ Bypasses restriction |
-| 🏦 **Banking applications** | Clipboard locked | ✅ Simulates keyboard |
-| 🎮 **Game chat/consoles** | No paste support | ✅ Types anything |
-| 🔐 **Citrix/VDI environments** | Paste restricted | ✅ Human-like input |
-| 📱 **Legacy applications** | No clipboard API | ✅ Keyboard simulation |
+|---|---|---|
+| 💻 Remote Desktop / VMware | Often blocked | ✅ Works |
+| 🌐 Web-based terminals | Ctrl+V disabled | ✅ Types naturally |
+| 📋 Secure document viewers | Paste disabled | ✅ Bypasses restriction |
+| 🏦 Banking / CRM applications | Clipboard locked | ✅ Simulates keyboard |
+| 🔐 Citrix / VDI environments | Paste restricted | ✅ Human-like input |
+| 📱 Legacy applications | No clipboard API | ✅ Keyboard simulation |
 
-### **How It Bypasses Restrictions:**
+### How the bypass works
+
 ```
-Traditional Copy-Paste:
-[Copy Text] → [Clipboard] → [CTRL+V] → ❌ BLOCKED!
+Traditional copy-paste:
+  [Clipboard] → Ctrl+V → ❌ BLOCKED
 
-Typer.ps1 Method:
-[Read Text] → [Simulate Keystrokes] → [Each Character] → ✅ ACCEPTED!
+Typer.ps1:
+  [Read text] → [Simulate keystrokes one by one] → ✅ ACCEPTED
 ```
 
-The application thinks a real human is typing because:
-- ⌨️ Uses Windows SendKeys API (same as real keyboard)
-- ⏱️ Human-like delay between keystrokes
-- 🎲 Random timing variations
+The application sees genuine keyboard events because:
+- ⌨️ Uses the Windows **SendKeys** API (same signals as a real keyboard)
+- ⏱️ Human-like delays between keystrokes
+- 🎲 Randomised timing variations
 - ⚡ Natural pauses after punctuation
 
 ---
 
-## 🔧 **INSTALLATION & SETUP**
+## 🔧 Installation & Setup
 
-### **Prerequisites:**
-- 💻 Windows operating system (7/8/10/11)
-- 🔧 PowerShell (pre-installed on all Windows versions)
-- 👑 No admin rights required!
+### Prerequisites
 
-### **Step-by-Step Installation:**
+- Windows 7 / 8 / 10 / 11
+- PowerShell (pre-installed on all Windows versions)
+- No administrator rights required
 
-#### **Method 1: Quick Setup (Recommended)**
+### Method 1 — Quick setup (recommended)
+
 ```powershell
-# 1. Download the script
-# Save typer.ps1 to your desired folder (e.g., C:\Tools\ or Desktop)
-
-# 2. Navigate to the script folder
+# Navigate to the folder containing typer.ps1
 cd C:\Path\To\Script
 
-# 3. Run it!
+# Run it
 powershell -ExecutionPolicy Bypass -File .\typer.ps1
 ```
 
-#### **Method 2: Permanent Setup**
+### Method 2 — Permanent setup
+
 ```powershell
 # Create a dedicated folder
 mkdir C:\AutoTyper
 cd C:\AutoTyper
 
-# Save typer.ps1 here
-
-# Optional: Add to PATH for quick access
-# Add this to your PowerShell profile:
+# Copy typer.ps1 here, then optionally add an alias to your PowerShell profile:
 Set-Alias typer "C:\AutoTyper\typer.ps1"
 ```
 
-#### **Method 3: Portable Setup (USB Drive)**
-```
-1. Create folder "AutoTyper" on your USB drive
-2. Copy typer.ps1 into it
-3. Create shortcut with target:
+### Method 3 — Portable (USB drive)
+
+1. Create a folder called `AutoTyper` on your USB drive
+2. Copy `typer.ps1` into it
+3. Create a shortcut with this target:
+   ```
    powershell -ExecutionPolicy Bypass -File "D:\AutoTyper\typer.ps1"
-4. Use anywhere, any computer!
-```
+   ```
+4. Works on any Windows machine, no installation needed
 
-### **First-Time Setup Video (Text Version):**
+### First-run walkthrough
+
 ```
-Step 1: 📁 Create folder → "C:\AutoTyper"
-Step 2: 💾 Save script → typer.ps1
-Step 3: 🚀 Run command → powershell -ExecutionPolicy Bypass -File .\typer.ps1
-Step 4: 📝 Edit file → input.txt appears, add your text
-Step 5: 🎯 Target window → Click where to type
-Step 6: ✨ Watch magic → Text types automatically!
+1. 📁  Create folder  →  C:\AutoTyper
+2. 💾  Save script    →  typer.ps1
+3. 🚀  Run command    →  powershell -ExecutionPolicy Bypass -File .\typer.ps1
+4. 📝  Edit file      →  input.txt is created — replace the example with your text
+5. 🎯  Focus window   →  Click the target application
+6. ✨  Watch it type  →  Text appears automatically
 ```
 
 ---
 
-## ✨ **FEATURES**
+## ✨ Features
 
-| Feature | Description | Benefit |
-|---------|-------------|---------|
-| 🚫📋 **Paste Bypass** | Types instead of pasting | Works where CTRL+V fails |
-| 🧠 **Smart Capitalization** | Auto-capitalizes first letter | Professional looking output |
-| 🎲 **Random Delays** | Human-like typing rhythm | Bypass bot detection |
-| ⚡ **Punctuation Pause** | Extra delay after .,!? | Natural reading flow |
-| 🔧 **Fully Configurable** | 7+ adjustable parameters | Perfect for any scenario |
-| 🛡️ **Encoding Safe** | Cleans Unicode characters | No weird symbols |
-| 📁 **Auto-Create File** | Creates input.txt if missing | Zero setup required |
-| 🚦 **Safety First** | Cancels on first run | Prevents accidents |
-| ⌨️ **Special Key Support** | Handles + ^ % ~ ( ) [ ] { } | Types ANYTHING |
-| 📊 **Progress Tracking** | Live character counter | Know exactly where you are |
+| Feature | Description |
+|---|---|
+| 🚫 **Paste bypass** | Simulates keystrokes so paste restrictions don't apply |
+| 🧠 **Smart capitalisation** | Automatically capitalises the first character |
+| 🎲 **Random delays** | Varies timing between keystrokes for a human feel |
+| ⚡ **Punctuation pauses** | Adds a natural pause after `.` `,` `!` `?` |
+| 🔧 **Fully configurable** | Seven adjustable parameters to fit any scenario |
+| 🛡️ **Encoding-safe** | Strips problematic Unicode characters automatically |
+| 📁 **Auto-creates input file** | Generates `input.txt` with an example on first run |
+| 🚦 **Safety stop** | Cancels on first run to let you review the input file |
+| ⌨️ **Special key escaping** | Correctly handles `+`, `^`, `%`, `~`, `(`, `)`, `[`, `]`, `{`, `}` |
+| 📊 **Live progress** | Displays a real-time character counter while typing |
 
 ---
 
-## 🔧 **PARAMETERS**
+## 🔧 Parameters
 
 ```powershell
-powershell .\typer.ps1 [-DelayMs <int>] [-InitialDelayMs <int>] [-Randomize] 
-                      [-MinDelayMs <int>] [-MaxDelayMs <int>] 
-                      [-PunctuationDelayMs <int>] [-Text <string>]
+.\typer.ps1 [-DelayMs <int>] [-InitialDelayMs <int>] [-Randomize]
+            [-MinDelayMs <int>] [-MaxDelayMs <int>]
+            [-PunctuationDelayMs <int>] [-Text <string>]
 ```
 
-| Parameter | Range | Default | Description |
-|-----------|-------|---------|-------------|
-| `-DelayMs` | 1-2000 | 20 | Base delay between keystrokes (ms) |
-| `-InitialDelayMs` | 0-10000 | 2000 | Time before typing starts (ms) |
-| `-Randomize` | Switch | Off | Enable random delays |
-| `-MinDelayMs` | 1-5000 | 40 | Minimum random delay (ms) |
-| `-MaxDelayMs` | 1-5000 | 120 | Maximum random delay (ms) |
-| `-PunctuationDelayMs` | 0-5000 | 300 | Extra pause after .,!? (ms) |
-| `-Text` | Any string | "" | Type this instead of file |
+| Parameter | Default | Range | Description |
+|---|---|---|---|
+| `-DelayMs` | `20` | 1–2000 | Base delay between keystrokes (ms) |
+| `-InitialDelayMs` | `2000` | 0–10000 | Pause before typing begins (ms) |
+| `-Randomize` | Off | Switch | Enable randomised keystroke delays |
+| `-MinDelayMs` | `40` | 1–5000 | Minimum delay when randomised (ms) |
+| `-MaxDelayMs` | `120` | 1–5000 | Maximum delay when randomised (ms) |
+| `-PunctuationDelayMs` | `300` | 0–5000 | Extra pause after punctuation (ms) |
+| `-Text` | `""` | Any string | Type this text directly instead of reading from a file |
 
 ---
 
-## 🧠 **HOW IT WORKS (The Algorithm)**
+## 🧠 How It Works
 
-### **Step 1: 📂 File Management**
+### Step 1 — File management
+
 ```
-┌─────────────────┐
-│   Start Script  │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│  -Text provided?│──Yes──→ Use provided text
-└────────┬────────┘
-         No
-         ↓
-┌─────────────────┐
-│ input.txt exists?│──No──→ Create file with example
-└────────┬────────┘          ↓
-        Yes                  ⚠️ CANCEL & Prompt user
-         ↓                    to edit file
-┌─────────────────┐
-│   Read file     │
-└─────────────────┘
+Start
+  └─ Was -Text provided?
+       ├─ Yes → Use provided text
+       └─ No  → Does input.txt exist?
+                  ├─ No  → Create file with example → ⚠️ Stop and prompt user
+                  └─ Yes → Read file contents
 ```
 
-### **Step 2: 🔄 Text Processing Pipeline**
+### Step 2 — Text processing pipeline
+
 ```
-Raw Text → Clean-Text → Ensure-FirstLetterCapitalized → Ready to Type
-    ↓           ↓                      ↓                      ↓
- [Unicode]  [Remove weird    [Capitalize first    [Clean, proper
-            characters]       letter if needed]    formatted text]
+Raw text → Strip Unicode → Capitalise first letter → Ready to type
 ```
 
-### **Step 3: ⌨️ Typing Engine**
+### Step 3 — Typing engine
+
 ```
 For each character:
-    ↓
-┌─────────────────────────────────────┐
-│ Is it a special char? (+, ^, %, etc)│
-└───────────────┬─────────────────────┘
-        Yes     ↓        No
-    ┌───────────────────────┐
-    │ Use SendKeys escape   │──→ Normal SendKeys
-    │ format: {+}, {^}, etc │
-    └───────────────────────┘
-                ↓
-    ┌─────────────────────────────────┐
-    │ Calculate delay:                │
-    │ if Randomize: Random(Min,Max)   │
-    │ else: DelayMs                    │
-    └─────────────────────────────────┘
-                ↓
-    ┌─────────────────────────────────┐
-    │ Punctuation? → Add ExtraDelay   │
-    └─────────────────────────────────┘
-                ↓
-    ┌─────────────────────────────────┐
-    │ Wait → Next character           │
-    └─────────────────────────────────┘
+  ├─ Is it a special SendKeys character? (+, ^, %, etc.)
+  │    └─ Yes → Escape it: {+}, {^}, etc.
+  ├─ Calculate delay
+  │    ├─ Randomize on  → Random value between MinDelayMs and MaxDelayMs
+  │    └─ Randomize off → DelayMs
+  ├─ Is it punctuation? → Add PunctuationDelayMs on top
+  └─ Send keystroke → wait → next character
 ```
 
-### **Step 4: 📊 Progress Tracking**
-- Shows real-time progress: `Progress: 42/100 characters`
-- Updates every 10 chars or after punctuation
-- Final summary with completion time
+### Step 4 — Progress tracking
+
+- Displays live updates: `Progress: 42/100 characters`
+- Updates every 10 characters or after punctuation
+- Prints a completion summary with elapsed time
 
 ---
 
-## 📝 **USAGE EXAMPLES**
+## 📝 Usage Examples
 
-### **Example 1: Bypass Paste in Remote Desktop**
+### Bypass paste in Remote Desktop
+
 ```powershell
-# RDP often blocks CTRL+V - this types instead!
-.\typer.ps1 -Text "Long password or text here" -InitialDelayMs 5000
+# RDP often blocks Ctrl+V — this types instead
+.\typer.ps1 -Text "My long password or command" -InitialDelayMs 5000
 ```
 
-### **Example 2: Fast Typing**
+### Fast typing
+
 ```powershell
-# Type super fast (10ms between keys)
 .\typer.ps1 -DelayMs 10 -InitialDelayMs 1000
 ```
 
-### **Example 3: Human-Like Mode (Best for Bypassing)**
+### Human-like mode (best for bypass)
+
 ```powershell
-# Random delays between 50-150ms, pause 400ms after punctuation
-# Looks exactly like human typing!
 .\typer.ps1 -Randomize -MinDelayMs 50 -MaxDelayMs 150 -PunctuationDelayMs 400
 ```
 
-### **Example 4: Direct Text Input**
+### Direct text input (no file needed)
+
 ```powershell
-# Type directly without creating input.txt
 .\typer.ps1 -Text "Hello, this is a test message!"
 ```
 
-### **Example 5: Long Presentation / Meeting**
+### Long presentation or meeting — extra time to switch windows
+
 ```powershell
-# Give yourself 10 seconds to switch windows
 .\typer.ps1 -InitialDelayMs 10000 -Randomize -PunctuationDelayMs 500
 ```
 
-### **Example 6: Command Injection (Advanced)**
+### Type a PowerShell command
+
 ```powershell
-# Type a PowerShell command (note the escaped quotes)
 .\typer.ps1 -Text 'Write-Host "Hello World" -ForegroundColor Green'
 ```
 
-### **Example 7: Bypass Web Terminal Restrictions**
+### Bypass web terminal restrictions
+
 ```powershell
-# Many web-based terminals disable paste
-# Create input.txt with your commands, then:
+# Put your commands in input.txt, then:
 .\typer.ps1 -Randomize -DelayMs 30
 ```
 
 ---
 
-## 🎮 **INTERACTIVE DEMO**
+## 🎮 Interactive Demo
 
-### **Scenario: Automating a Welcome Message in a Paste-Blocked App**
+**Goal:** Automate a welcome message in an app that blocks pasting.
 
-**Step 1:** First run (file doesn't exist)
-```powershell
-PS C:\> .\typer.ps1
+**Step 1 — First run (no `input.txt` yet)**
+
+```
+PS C:\AutoTyper> .\typer.ps1
 
 ============================================================
 INPUT.TXT NOT FOUND
@@ -315,41 +288,45 @@ AUTO-TYPING CANCELLED
 input.txt has been created with an example command.
 
 Please:
-  1. Open input.txt and replace its contents with the text you want to type
+  1. Open input.txt and replace its contents with your text
   2. Save the file
   3. Run this script again
 ```
 
-**Step 2:** Edit `input.txt` to contain:
+**Step 2 — Edit `input.txt`**
+
 ```
 Welcome to our presentation! Today we'll discuss...
 ```
 
-**Step 3:** Run again with human-like settings
+**Step 3 — Run with human-like settings**
+
 ```powershell
 .\typer.ps1 -Randomize -PunctuationDelayMs 400
 ```
 
 **Output:**
+
 ```
 ============================================================
 TEXT PROCESSING
 ============================================================
-First letter already capitalized: 'W'
+First letter already capitalised: 'W'
 
-Original: 'Welcome to our presentation! Today we'll discuss...'
+Original:  'Welcome to our presentation! Today we'll discuss...'
 Processed: 'Welcome to our presentation! Today we'll discuss...'
 
 ============================================================
 TEXT TO TYPE
 ============================================================
 Welcome to our presentation! Today we'll discuss...
-============================================================
+------------------------------------------------------------
 Length: 52 characters
 
 Switch to your target window now...
 Typing will begin in 2 seconds...
-Press Ctrl+C to cancel...
+Press Ctrl+C to cancel.
+
 Progress: 52/52 characters
 
 ============================================================
@@ -359,95 +336,73 @@ TYPING COMPLETED SUCCESSFULLY!
 
 ---
 
-## ⚠️ **TROUBLESHOOTING**
+## ⚠️ Troubleshooting
 
-### **Common Issues & Solutions**
+| Issue | Likely Cause | Solution |
+|---|---|---|
+| Script won't run | Execution policy | `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` |
+| File not found | Wrong directory | Run from the same folder as the script, or use the full path |
+| Text appears in the wrong window | Focus moved | Click the target window before the initial delay expires |
+| Strange characters in output | Unicode in source | The script cleans these automatically — check your source text |
+| Typing too fast or too slow | Delay settings | Adjust `-DelayMs` or use `-Randomize` with custom min/max values |
+| Special keys misfiring | SendKeys format | These are handled via the escape switch — open a bug report if one is missing |
+| Types in the wrong window | Window focus lost | Increase `-InitialDelayMs` to give yourself more time |
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| 🚫 **Script won't run** | Execution Policy | `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` |
-| 📁 **File not found** | Wrong directory | Run from same folder as script or use full path |
-| ⌨️ **Wrong window types** | Focus issue | Click target window during initial delay |
-| 🔤 **Weird characters** | Unicode problems | Script auto-cleans them, but check source text |
-| ⏱️ **Too fast/slow** | Delay settings | Adjust `-DelayMs` or use `-Randomize` |
-| 🔒 **Special keys not working** | SendKeys limitations | They're handled! Check the switch statement |
-| 🚫 **Still can't paste** | You're not pasting! | Script TYPES, doesn't paste - that's the point! |
-| 🎯 **Types in wrong window** | Focus lost | Increase `-InitialDelayMs` to give more time |
+### Tips for reliable paste bypass
 
-### **Pro Tips for Paste Bypass:**
-- 💡 **Test first** with short text in Notepad to verify settings
-- 🎯 **Use `-Randomize`** for most natural-looking input
-- ⏱️ **Increase delays** for laggy remote connections
-- 📝 **Break long texts** into multiple runs if needed
-- 🛡️ **Some apps detect rapid typing** - slow it down!
+- **Test with short text in Notepad first** to verify your delay settings
+- **Use `-Randomize`** for the most natural-looking input
+- **Increase delays** on laggy remote connections
+- **Break very long texts** into multiple runs if needed
+- **Slow down for sensitive apps** — some detect rapid keystroke patterns
 
-### **Advanced Bypass Techniques:**
+### Delay presets
+
 ```powershell
-# Super realistic typing (varies between 100-300ms)
+# Super realistic (varies 100–300 ms)
 .\typer.ps1 -Randomize -MinDelayMs 100 -MaxDelayMs 300 -PunctuationDelayMs 500
 
-# Ultra slow for sensitive apps
+# Ultra slow for high-security applications
 .\typer.ps1 -DelayMs 200 -PunctuationDelayMs 800
 
-# Fast but still human-like
+# Fast but still plausibly human
 .\typer.ps1 -Randomize -MinDelayMs 30 -MaxDelayMs 80
 ```
 
 ---
 
-## 🏆 **REAL-WORLD USE CASES**
+## 🤝 Contributing
 
-### **Where Users Have Successfully Used Typer.ps1:**
+Contributions are welcome! Here's how to get involved:
 
-| Environment | Challenge | Solution |
-|-------------|-----------|----------|
-| 🏦 **Banking Systems** | No paste in secure fields | Types credentials safely |
-| 💻 **VMware Horizon** | CTRL+V disabled | Human-like typing works |
-| 🌐 **AWS Console** | Web-based terminal no paste | Types commands naturally |
-| 📊 **Citrix Apps** | Clipboard restricted | Bypasses with keystrokes |
-| 🎮 **Game Chat** | No paste support | Types messages anyway |
-| 🔐 **Secure CRMs** | Paste disabled for security | Still inputs data |
-| 📝 **Legacy Systems** | No clipboard API | Keyboard simulation works |
+1. 🐛 **Report bugs** — Open an issue with steps to reproduce
+2. 💡 **Suggest features** — Word-level delays, custom key mappings, profiles…
+3. 🔧 **Submit a PR** — Keep changes focused and include a brief description
+4. ⭐ **Star the repo** — Helps others discover the project
 
----
+### Planned features
 
-## 🤝 **CONTRIBUTING**
-
-Love this script? Here's how you can help:
-
-1. 🐛 **Report bugs** - Open an issue
-2. 💡 **Suggest features** - Random word delays? Custom key mappings?
-3. 🔧 **Submit PRs** - Make it even better
-4. ⭐ **Star it** - Show some love
-5. 📢 **Share it** - Tell your friends about paste bypass!
-
-### **Planned Features:**
-- [ ] Word-based random delays (not just character)
-- [ ] Configurable hotkey to start typing
-- [ ] Multiple text snippets support
+- [ ] Word-based random delays (in addition to character-level)
+- [ ] Configurable hotkey to trigger typing
+- [ ] Multiple text snippet support
 - [ ] GUI configuration tool
 - [ ] Macro recording mode
-- [ ] Profile system for different apps
+- [ ] Per-application profile system
 
 ---
 
-## 📜 **LICENSE**
+## 📜 License
 
-Free as in beer! 🍺 Use it, modify it, share it. Just don't blame me if you accidentally type "rm -rf /" somewhere important!
+Free to use, modify, and share. Just don't blame me if you accidentally type `rm -rf /` somewhere important. 🍺
 
 ---
 
 <div align="center">
 
-**Made with ❤️ for everyone tired of paste restrictions**
+**Made with ❤️ for everyone fed up with paste restrictions.**
 
-**"Why paste when you can type... automatically?"** 🤖
+*"Why paste when you can type — automatically?"*
 
-[⬆ Back to Top](#-readme)
+[⬆ Back to top](#-typerps1--the-human-like-auto-typer)
 
 </div>
-
----
-
-
-*Happy Typing! 🎉*
